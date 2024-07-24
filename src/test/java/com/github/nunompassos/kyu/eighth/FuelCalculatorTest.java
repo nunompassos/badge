@@ -10,5 +10,6 @@ public class FuelCalculatorTest {
         Assertions.assertEquals(5.65d, FuelCalculator.fuelPrice(5, 1.23d), 0.001d);
         Assertions.assertEquals(18.40d, FuelCalculator.fuelPrice(8, 2.5d), 0.001d);
         Assertions.assertEquals(27.50d, FuelCalculator.fuelPrice(5, 5.6d), 0.001d);
+        Assertions.assertEquals(7.50d, FuelCalculator.fuelPrice(10, 1d), 0.001d);
     }
 }
