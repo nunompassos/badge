@@ -29,4 +29,4 @@ jobs:
       - name: 'Publish new version'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: mvn -B release:prepare release:perform"
+        run: mvn -B release:prepare release:perform
