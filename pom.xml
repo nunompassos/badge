@@ -22,6 +22,22 @@
         </dependency>
     </dependencies>
 
+    <scm>
+        <developerConnection>scm:git:https://github.com/nunompassos/badge.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub TCMPs Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/nunompassos/badge</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </distributionManagement>
+
     <build>
         <plugins>
             <!--<plugin>
