@@ -28,15 +28,29 @@ jobs:
           generate-branches-badge: true
           fail-if-coverage-less-than: 75
           fail-if-branches-less-than: 50
+          generate-summary: true
+
+      - name: PR body build
+        id: pr_body_build
+        if: success() || failure()
+        run: |
+          REPORT=$(<badges/coverage-summary.json)
+          COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
+          BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
+          NEWLINE=$'\n'
+          BODY="## JaCoCo Test Coverage Summary Statistics${NEWLINE}* __Coverage:__ ${COVERAGE}${NEWLINE}* __Branches:__ ${BRANCHES}"
+          echo "COMMENT_BODY=${BODY}" >> $GITHUB_OUTPUT
+        continue-on-error: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Comment PR
         if: success() || failure()
         uses: thollander/actions-comment-pull-request@v2
+        env:
+          BODY: ${{ steps.pr_body_build.outputs.COMMENT_BODY }}
         with:
-          message: |
-            JaCoCo Test Coverage Summary 
-            coverage = ${{ steps.jacoco.outputs.coverage }}
-            branches = ${{ steps.jacoco.outputs.branches }}
+          message: $BODY
 
       - name: Log coverage percentage
         run: |
@@ -46,6 +60,7 @@ jobs:
   publish-snapshot:
     name: Publish SNAPSHOT build
     needs: build
+    if: success()
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
