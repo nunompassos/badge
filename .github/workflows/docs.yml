@@ -6,6 +6,7 @@ on:
     paths: [ '**.java', '.github/workflows/docs.yml' ]
   release:
     types: [created]
+  workflow_dispatch:
 
 jobs:
   docs:
@@ -42,7 +43,7 @@ jobs:
         id: tidy
         uses: cicirello/javadoc-cleanup@v1
         with:
-          base-url-path: https://github.com/nunompassos
+          base-url-path: https://nunompassos.github.io/badge/
           path-to-root: gh-pages
           user-defined-block: |
             <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -74,7 +75,7 @@ jobs:
         id: sitemap
         uses: cicirello/generate-sitemap@v1
         with:
-          base-url-path: https://github.com/nunompassos
+          base-url-path: https://nunompassos.github.io/badge/
           path-to-root: gh-pages
 
       - name: Output stats
