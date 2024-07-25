@@ -1,5 +1,5 @@
 # badge
-![Coverage](../badges/jacoco.svg)
-![Branches](../badges/branches.svg)
+![Coverage](.github/badges/jacoco.svg)
+![Branches](.github/badges/branches.svg)
 
 Test the badge creation for code coverage
