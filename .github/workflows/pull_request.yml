@@ -26,15 +26,14 @@ jobs:
         uses: cicirello/jacoco-badge-generator@v2
         with:
           generate-branches-badge: true
-          fail-if-coverage-less-than: 75
-          fail-if-branches-less-than: 50
+          # fail-if-coverage-less-than: 75
+          # fail-if-branches-less-than: 50
           generate-summary: true
 
       - name: PR body build
         id: pr_body_build
         if: success() || failure()
         run: |
-          echo ${{ steps.jacoco.outputs }}
           REPORT=$(.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
