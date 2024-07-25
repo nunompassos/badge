@@ -34,7 +34,7 @@ jobs:
         id: pr_body_build
         if: success() || failure()
         run: |
-          REPORT=$(<badges/coverage-summary.json)
+          REPORT=$(<.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
           NEWLINE=$'\n'
