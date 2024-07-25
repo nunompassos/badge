@@ -54,6 +54,7 @@ jobs:
             ${{ steps.pr_body_build.outputs.COMMENT_BODY }}
 
       - name: Log coverage percentage
+        if: success() || failure()
         run: |
           echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
           echo "branches = ${{ steps.jacoco.outputs.branches }}"
