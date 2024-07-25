@@ -29,6 +29,15 @@ jobs:
           fail-if-coverage-less-than: 75
           fail-if-branches-less-than: 50
 
+      - name: Comment PR
+        if: success() || failure()
+        uses: thollander/actions-comment-pull-request@v2
+        with:
+          message: |
+            JaCoCo Test Coverage Summary 
+            coverage = ${{ steps.jacoco.outputs.coverage }}
+            branches = ${{ steps.jacoco.outputs.branches }}
+
       - name: Log coverage percentage
         run: |
           echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
