@@ -47,10 +47,8 @@ jobs:
       - name: Comment PR
         if: success() || failure()
         uses: thollander/actions-comment-pull-request@v2
-        env:
-          BODY: ${{ steps.pr_body_build.outputs.COMMENT_BODY }}
         with:
-          message: ${{ BODY }}
+          message: ${{ steps.pr_body_build.outputs.COMMENT_BODY }}
 
       - name: Log coverage percentage
         run: |
