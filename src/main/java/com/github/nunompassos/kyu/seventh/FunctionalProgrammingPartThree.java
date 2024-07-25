@@ -23,17 +23,17 @@ import java.util.function.IntUnaryOperator;
  * Okay, say we have these statements:
  * <p>
  * int foo = 5;<p>
- * Function<String, Integer> f = s -> s.length + foo;<p>
+ * Function&lt;String, Integer&gt; f = s -> s.length + foo;<p>
  * f.apply("somestring"); //Should be 15<p>
  * Given an input of "somestring", f should return 15. But what happens when f leaves this context?
  * <p>
  * public void someMethod() {<p>
  *   int foo = 5;<p>
- *   Function<String, Integer> f = s -> s.length + foo;<p>
+ *   Function&lt;String, Integer&gt; f = s -> s.length + foo;<p>
  *   f.apply("somestring"); //Should be 15<p>
  *   sendMethod(f);<p>
  * }<p>
- * public void sendMethod(Function<String, Integer> f) {<p>
+ * public void sendMethod(Function&lt;String, Integer&gt; f) {<p>
  *   f.apply("otherstring"); //Should return 16<p>
  * }<p>
  * Does f still know foo is 5 when f is in sendMethod? foo is a local variable to someMethod, after all. Yes, f knows 5 is 5; that's what closures do.

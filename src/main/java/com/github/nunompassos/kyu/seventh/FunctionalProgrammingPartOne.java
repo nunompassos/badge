@@ -14,7 +14,7 @@ import java.util.function.Function;
  * Coming from most scripting languages (e.g., Javascript, Python, Ruby), the concept of functions that can be passed as variables should not be anything new.
  * The syntax in Java should even look familiar:
  * <p>
- * Function<MyObject, String> f = p -> p.toString();<p>
+ * Function&lt;MyObject, String&gt; f = p -> p.toString();<p>
  * String myString = f.apply(myObject); //Stores whatever the toString() of myObject is in myString<p>
  * The above is a simple mapper function: given an input of type MyObject, return a specific result of type String, in this case the toString of the object.
  * They can, of course, become much more complicated.

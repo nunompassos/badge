@@ -7,7 +7,7 @@ import java.util.Comparator;
  * <p>
  * The Cat class is preloaded for you., and its signature is given below:
  * <p>
- * public class Cat implements Comparable<Cat><p>
+ * public class Cat implements Comparable&lt;Cat&gt;<p>
  * {<p>
  *   public String name;<p>
  *   public double weight;<p>
@@ -27,9 +27,9 @@ import java.util.Comparator;
  * <p>
  * For more information about Arrays, take a look <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Arrays.html">here</a>.
  * <p>
- * For more information about Comparable<T>, see <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html">here</a>.
+ * For more information about Comparable&lt;T&gt;, see <a href="http://docs.oracle.com/javase/7/docs/api/java/lang/Comparable.html">here</a>.
  * <p>
- * For more information about Comparator<T>, check out <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html">here</a>.
+ * For more information about Comparator&lt;T&gt;, check out <a href="http://docs.oracle.com/javase/7/docs/api/java/util/Comparator.html">here</a>.
  */
 public class HerdingCats implements Comparator<Cat>
 {

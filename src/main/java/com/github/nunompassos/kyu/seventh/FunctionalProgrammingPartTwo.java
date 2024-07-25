@@ -15,12 +15,12 @@ import java.util.function.ToDoubleFunction;
  * <a href="http://www.codewars.com/kata/java-functional-programming-part-4-row-row-row-your-boat-gently-down-the-dot-dot-dot">Part 4</a><p>
  * Last time, we did something similar to this:
  * <p>
- * Function<MyObject, String> f = p -> p.toString();<p>
+ * Function&lt;MyObject, String&gt; f = p -> p.toString();<p>
  * String myString = f.apply(myObject); //Stores whatever the toString() of myObject is in myString<p>
  * But what if we need more than one line in our function for the calculations?
  * The syntax to do so is to enclose the function's commands in curly brackets and include a return statement:
  * <p>
- * Function<MyObject, String> f = p -> {StringBuffer out = new StringBuffer();<p>
+ * Function&lt;MyObject, String&gt; f = p -> {StringBuffer out = new StringBuffer();<p>
  *                                      out.append(p.getName());<p>
  *                                      out.append(MyObject.getStaticName());<p>
  *                                      out.append("Constant message");<p>
