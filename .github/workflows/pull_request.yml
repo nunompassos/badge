@@ -39,6 +39,7 @@ jobs:
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
           NEWLINE=$'\n'
           BODY="## JaCoCo Test Coverage Summary Statistics${NEWLINE}* __Coverage:__ ${COVERAGE}${NEWLINE}* __Branches:__ ${BRANCHES}"
+          echo ${BODY}
           echo "COMMENT_BODY=${BODY}" >> $GITHUB_OUTPUT
         continue-on-error: true
         env:
@@ -48,7 +49,8 @@ jobs:
         if: success() || failure()
         uses: thollander/actions-comment-pull-request@v2
         with:
-          message: ${{ steps.pr_body_build.outputs.COMMENT_BODY }}
+          message: |
+            ${{ steps.pr_body_build.outputs.COMMENT_BODY }}
 
       - name: Log coverage percentage
         run: |
