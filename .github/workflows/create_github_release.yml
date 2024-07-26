@@ -11,6 +11,8 @@ jobs:
     runs-on: "ubuntu-latest"
     steps:
       - name: "Create release"
-        uses: "ergebnis/.github/actions/github/release/create@1.8.0"
+        # uses: "ergebnis/.github/actions/github/release/create@1.8.0"
+        uses: softprops/action-gh-release
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
+          generate-release-notes: true
+          token: ${{ secrets.GITHUB_TOKEN }}
