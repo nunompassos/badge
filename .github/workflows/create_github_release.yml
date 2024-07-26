@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: "Create release"
         # uses: "ergebnis/.github/actions/github/release/create@1.8.0"
-        uses: softprops/action-gh-release
+        uses: softprops/action-gh-release@v2
         with:
           generate-release-notes: true
           token: ${{ secrets.GITHUB_TOKEN }}
