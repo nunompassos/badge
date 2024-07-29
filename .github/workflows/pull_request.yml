@@ -39,7 +39,7 @@ jobs:
           NEWLINE=$'\n'
           BODY="## JaCoCo Test Coverage Summary Statistics${NEWLINE}* __Coverage:__ ${COVERAGE}${NEWLINE}* __Branches:__ ${BRANCHES}"
           echo ${BODY}
-          if [[ ${COVERAGE} -ge 75 && ${BRANCHES} -ge 50 ]]
+          if [[ ${COVERAGE} -ge 75 && ${BRANCHES} -ge 50 ]]; then
             RESULT = ":white_check_mark:"
           else
             RESULT = ":x:"
