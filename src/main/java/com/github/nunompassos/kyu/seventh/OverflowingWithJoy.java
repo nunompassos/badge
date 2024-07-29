@@ -5,7 +5,7 @@ package com.github.nunompassos.kyu.seventh;
  * <p>
  * (If this is too easy, try overflowing with longing.)
  */
-public class OverflowingWithJoy {
+public abstract class OverflowingWithJoy {
     public static int multiply(int a, int b) {
         return Math.multiplyExact(a, b);
     }
