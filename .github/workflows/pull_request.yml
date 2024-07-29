@@ -3,6 +3,10 @@ name: Pull Request validation and Snapshot build
 on:
   pull_request
 
+env:
+  MIN_COVERAGE: 75
+  MIN_BRANCHES: 50
+
 jobs:
   build:
     name: Pull Request Validation
@@ -36,10 +40,10 @@ jobs:
           REPORT=$(<.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
-          if [[ 1 -eq "$(echo "${COVERAGE} >= 75" | bc)" ]]; then
-            RESULT=":white_check_mark:"
-          else
+          if [ 1 -eq "$(echo "$COVERAGE < ${{ env.MIN_COVERAGE }}" | bc)" ]; then
             RESULT=":x:"
+          else
+            RESULT=":white_check_mark:"
           fi
           echo "COMMENT_BODY=## JaCoCo Test Coverage Summary Statistics ${RESULT}" >> $GITHUB_OUTPUT
           echo "COVERAGE_BODY=* __Coverage:__ ${COVERAGE}" >> $GITHUB_OUTPUT
