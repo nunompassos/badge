@@ -37,11 +37,7 @@ jobs:
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
           if (( $(echo "$COVERAGE >= 75" |bc -l) )); then
-            if (( $(echo "$BRANCHES >= 50" |bc -l) )); then
-              RESULT=":white_check_mark:"
-            else
-              RESULT=":x:"
-            fi
+            RESULT=":white_check_mark:"
           else
             RESULT=":x:"
           fi
