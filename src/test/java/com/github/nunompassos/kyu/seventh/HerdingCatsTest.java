@@ -19,6 +19,7 @@ public class HerdingCatsTest {
 
         assertEquals("Drake", cats[0].name, "Incorrect cat found at index 0");
         assertEquals("Lily", cats[1].name, "Incorrect cat found at index 1");
+        assertEquals(-8, cats[0].compareTo(cats[1]));
     }
 
 }
