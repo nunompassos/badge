@@ -44,18 +44,16 @@
                 <version>3.3.1</version>
                 <configuration>
                     <includes>
-                        <include>
-                            <include>**/*TestCases.java</include>
-                            <include>**/*Tests.java</include>
-                            <include>**/*TestCase.java</include>
-                            <include>**/*Test.java</include>
-                            <include>**/Test*.java</include>
-                            <include>**/*TestCases.kt</include>
-                            <include>**/*Tests.kt</include>
-                            <include>**/*TestCase.kt</include>
-                            <include>**/*Test.kt</include>
-                            <include>**/Test*.kt</include>
-                        </include>
+                        <include>**/*TestCases.java</include>
+                        <include>**/*Tests.java</include>
+                        <include>**/*TestCase.java</include>
+                        <include>**/*Test.java</include>
+                        <include>**/Test*.java</include>
+                        <include>**/*TestCases.kt</include>
+                        <include>**/*Tests.kt</include>
+                        <include>**/*TestCase.kt</include>
+                        <include>**/*Test.kt</include>
+                        <include>**/Test*.kt</include>
                     </includes>
                 </configuration>
             </plugin>
