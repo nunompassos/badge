@@ -40,9 +40,9 @@ jobs:
           BODY="## JaCoCo Test Coverage Summary Statistics${NEWLINE}* __Coverage:__ ${COVERAGE}${NEWLINE}* __Branches:__ ${BRANCHES}"
           echo ${BODY}
           if [[ ${COVERAGE} -ge 75 && ${BRANCHES} -ge 50 ]]; then
-            RESULT = ":white_check_mark:"
+            RESULT=":white_check_mark:"
           else
-            RESULT = ":x:"
+            RESULT=":x:"
           fi
           echo "COMMENT_BODY=## JaCoCo Test Coverage Summary Statistics ${RESULT}" >> $GITHUB_OUTPUT
           echo "COVERAGE_BODY=* __Coverage:__ ${COVERAGE}" >> $GITHUB_OUTPUT
