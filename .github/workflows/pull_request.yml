@@ -40,8 +40,7 @@ jobs:
           REPORT=$(<.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
-          echo "${{ steps.jacoco.outputs.coverage }} < ${{ env.MIN_COVERAGE }}" | bc
-          if [[ 1 -eq "$(echo "${{ steps.jacoco.outputs.coverage }} < ${{ env.MIN_COVERAGE }}" | bc)" && 1 -eq "$(echo "${{ steps.jacoco.outputs.branches }} < ${{ env.MIN_BRANCHES }}" | bc)" ]]; then
+          if [[ 1 -eq "$(echo "${{ steps.jacoco.outputs.coverage }} < ${{ env.MIN_COVERAGE }}" | bc)" || 1 -eq "$(echo "${{ steps.jacoco.outputs.branches }} < ${{ env.MIN_BRANCHES }}" | bc)" ]]; then
             RESULT=":x:";
           else
             RESULT=":white_check_mark:";
@@ -67,7 +66,7 @@ jobs:
           echo "branches = ${{ steps.jacoco.outputs.branches }}"
 
       - name: Validate coverage
-        if: ${{ steps.jacoco.outputs.coverage < env.MIN_COVERAGE && steps.jacoco.outputs.branches < env.MIN_BRANCHES }}
+        if: ${{ steps.jacoco.outputs.coverage < env.MIN_COVERAGE || steps.jacoco.outputs.branches < env.MIN_BRANCHES }}
         uses: actions/github-script@v4
         with:
           script: |
