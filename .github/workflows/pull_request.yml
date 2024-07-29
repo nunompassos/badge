@@ -63,3 +63,10 @@ jobs:
         run: |
           echo "coverage = ${{ steps.jacoco.outputs.coverage }}"
           echo "branches = ${{ steps.jacoco.outputs.branches }}"
+
+      - name: Validate coverage
+        if: ${{ steps.jacoco.outputs.coverage <= 0.75 && steps.jacoco.outputs.branches <= 0.50 }}
+        uses: actions/github-script@v4
+        with:
+          script: |
+            core.setFailed('Coverage bellow threshold!')
