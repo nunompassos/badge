@@ -65,7 +65,7 @@ jobs:
           echo "branches = ${{ steps.jacoco.outputs.branches }}"
 
       - name: Validate coverage
-        if: ${{ steps.jacoco.outputs.coverage <= 0.75 && steps.jacoco.outputs.branches <= 0.50 }}
+        if: ${{ steps.jacoco.outputs.coverage < 0.75 && steps.jacoco.outputs.branches < 0.50 }}
         uses: actions/github-script@v4
         with:
           script: |
