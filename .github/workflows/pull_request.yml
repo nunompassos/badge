@@ -40,7 +40,8 @@ jobs:
           REPORT=$(<.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
-          if [[ 0 -eq "$(echo "${{ steps.jacoco.outputs.coverage }} < ${{ env.MIN_COVERAGE }}" | bc)" && 0 -eq "$(echo "${{ steps.jacoco.outputs.branches }} < ${{ env.MIN_BRANCHES }}" | bc)" ]]; then
+          echo "$(echo "${{ steps.jacoco.outputs.coverage }} < $${{ env.MIN_COVERAGE }}" | bc)"
+          if [[ 1 -eq "$(echo "${{ steps.jacoco.outputs.coverage }} < ${{ env.MIN_COVERAGE }}" | bc)" && 1 -eq "$(echo "${{ steps.jacoco.outputs.branches }} < ${{ env.MIN_BRANCHES }}" | bc)" ]]; then
             RESULT=":x:";
           else
             RESULT=":white_check_mark:";
