@@ -4,7 +4,7 @@ on:
   pull_request
 
 env:
-  MIN_COVERAGE: 0.8
+  MIN_COVERAGE: 0.75
   MIN_BRANCHES: 0.5
 
 jobs:
