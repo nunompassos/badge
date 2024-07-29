@@ -36,10 +36,10 @@ jobs:
           REPORT=$(<.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
-          if (( $(echo "$COVERAGE >= 75" |bc -l) )); then
-            RESULT=":white_check_mark:"
-          else
+          if (( $(echo "$COVERAGE < 80" |bc -l) )); then
             RESULT=":x:"
+          else
+            RESULT=":white_check_mark:"
           fi
           echo "COMMENT_BODY=## JaCoCo Test Coverage Summary Statistics ${RESULT}" >> $GITHUB_OUTPUT
           echo "COVERAGE_BODY=* __Coverage:__ ${COVERAGE}" >> $GITHUB_OUTPUT
