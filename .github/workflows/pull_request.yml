@@ -36,7 +36,7 @@ jobs:
           REPORT=$(<.github/badges/coverage-summary.json)
           COVERAGE=$(jq -r '.coverage' <<< "$REPORT")%
           BRANCHES=$(jq -r '.branches' <<< "$REPORT")%
-          if (( $(echo "$COVERAGE >= 75 && $BRANCHES >= 50" |bc -l) )); then
+          if (( $(echo "$COVERAGE >= 75" |bc -l) && $(echo "$BRANCHES >= 50" |bc -l) )); then
             RESULT=":white_check_mark:"
           else
             RESULT=":x:"
