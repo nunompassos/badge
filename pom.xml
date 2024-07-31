@@ -4,7 +4,7 @@
 
     <groupId>com.github.nunompassos</groupId>
     <artifactId>java-kata</artifactId>
-    <version>1.7-SNAPSHOT</version>
+    <version>1.7.0-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
