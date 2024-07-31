@@ -4,7 +4,7 @@
 
     <groupId>com.github.nunompassos</groupId>
     <artifactId>java-kata</artifactId>
-    <version>1.6</version>
+    <version>1.7-SNAPSHOT</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -22,7 +22,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/nunompassos/badge.git</developerConnection>
-        <tag>v1.6</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
