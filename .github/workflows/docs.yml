@@ -2,11 +2,17 @@ name: docs
 
 on:
   push:
-    branches: [ main ]
-    paths: [ '**.java', '.github/workflows/docs.yml' ]
-  release:
-    types: [created]
-  workflow_dispatch:
+    branches:
+      - main
+    paths:
+      - '**.java'
+      - '.github/workflows/docs.yml'
+    if: "!startsWith(github.ref, 'ref/tags/')"
+  push:
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+    if: "startsWith(github.ref, 'ref/tags/')"
+
 
 jobs:
   docs:
