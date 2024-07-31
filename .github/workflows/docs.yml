@@ -2,11 +2,14 @@ name: docs
 
 on:
   push:
-    branches: [ main ]
-    paths: [ '**.java', '.github/workflows/docs.yml' ]
-  release:
-    types: [created]
-  workflow_dispatch:
+    branches:
+      - main
+    paths:
+      - '**.java'
+      - '.github/workflows/docs.yml'
+    tags:
+      - "v[0-9]+.[0-9]+.[0-9]+"
+
 
 jobs:
   docs:
@@ -33,13 +36,19 @@ jobs:
         run: mvn compile javadoc:javadoc
 
       - name: Copy to Documentation Website Location
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        if: ${{ startsWith(github.ref, 'ref/tags/') }}
         run: |
           rm -rf gh-pages/api
-          cp -rf target/site/apidocs/. gh-pages/api	
+          cp -rf target/site/apidocs/. gh-pages/api
+
+      - name: Copy to SNAPSHOT Documentation Website Location
+        if: ${{ !startsWith(github.ref, 'ref/tags/') }}
+        run: |
+          rm -rf gh-pages/api-snapshot
+          cp -rf target/site/apidocs/. gh-pages/api-snapshot
 
       - name: Tidy up the javadocs
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        # if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
         id: tidy
         uses: cicirello/javadoc-cleanup@v1
         with:
@@ -54,12 +63,12 @@ jobs:
             <link rel="icon" href="/images/favicon384.png" sizes="384x384" type="image/png">
 
       - name: Log javadoc-cleanup output
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        # if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
         run: |
           echo "modified-count = ${{ steps.tidy.outputs.modified-count }}"
 
       - name: Commit documentation changes without pushing yet
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        # if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
         run: |
           cd gh-pages
           if [[ `git status --porcelain` ]]; then
@@ -71,7 +80,7 @@ jobs:
           cd ..
 
       - name: Generate the sitemap
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        # if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
         id: sitemap
         uses: cicirello/generate-sitemap@v1
         with:
@@ -79,14 +88,14 @@ jobs:
           path-to-root: gh-pages
 
       - name: Output stats
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        # if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
         run: |
           echo "sitemap-path = ${{ steps.sitemap.outputs.sitemap-path }}"
           echo "url-count = ${{ steps.sitemap.outputs.url-count }}"
           echo "excluded-count = ${{ steps.sitemap.outputs.excluded-count }}"
 
       - name: Commit documentation website sitemap and push all commits
-        if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
+        # if: ${{ github.event_name == 'release' || github.event_name == 'workflow_dispatch' }}
         run: |
           cd gh-pages
           if [[ `git status --porcelain` ]]; then
