@@ -19,6 +19,10 @@ jobs:
       - name: Checkout the repo
         uses: actions/checkout@v4
 
+      - name: Log ref
+        run: |
+          echo "${{ github.ref }}"
+
       - name: Checkout the gh-pages branch
         uses: actions/checkout@v4
         with:
@@ -36,13 +40,13 @@ jobs:
         run: mvn compile javadoc:javadoc
 
       - name: Copy to Documentation Website Location
-        if: ${{ startsWith(github.ref, 'ref/tags/') }}
+        if: ${{ startsWith(github.ref, 'refs/tags/') }}
         run: |
           rm -rf gh-pages/api
           cp -rf target/site/apidocs/. gh-pages/api
 
       - name: Copy to SNAPSHOT Documentation Website Location
-        if: ${{ !startsWith(github.ref, 'ref/tags/') }}
+        if: ${{ ! startsWith(github.ref, 'refs/tags/') }}
         run: |
           rm -rf gh-pages/api-snapshot
           cp -rf target/site/apidocs/. gh-pages/api-snapshot
