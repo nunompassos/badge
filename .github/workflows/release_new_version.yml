@@ -8,10 +8,13 @@ jobs:
     name: 'Release'
     runs-on: ubuntu-latest
     steps:
+      - name: 'Install SSH Client'
+        uses: webfactory/ssh-agent@0.4.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
       - name: 'Checkout'
         uses: actions/checkout@v4
-        with:
-          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: 'Set up JDK 17'
         uses: actions/setup-java@v3
